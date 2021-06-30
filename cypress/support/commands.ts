@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+import '@testing-library/cypress/add-commands'
 
 // ***********************************************
 // This example commands.js shows you how to
@@ -25,20 +25,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  interface Chainable {
-    /**
-     * Custom command to login into Atlas with a test membership.
-     */
-    login(): Chainable<void>
-    /**
-     * Custom command to make the polkadot api available and add accounts, memberships, etc.. to it.
-     */
-    injectPolkadot(accounts: any[]): Chainable<void>
-  }
-}
 
 Cypress.Commands.add('injectPolkadot', (accounts = []) => {
   const enable = async () => {
