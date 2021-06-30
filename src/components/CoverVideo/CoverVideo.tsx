@@ -40,7 +40,8 @@ export const CoverVideo: React.FC = () => {
     entity: coverVideo?.video,
     assetType: AssetType.THUMBNAIL,
   })
-  const { url: mediaUrl } = useAsset({ entity: coverVideo?.video, assetType: AssetType.MEDIA })
+
+  // const { url: mediaUrl } = useAsset({ entity: coverVideo?.video, assetType: AssetType.MEDIA })
 
   const handlePlaybackDataLoaded = () => {
     setTimeout(() => {
