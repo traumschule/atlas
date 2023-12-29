@@ -66,7 +66,7 @@ features:
           - Sizeable subscriber base with high ratio of views for videos.
         rewards:
           - 25
-          - 3
+          - 6
           - 12.5
       - tier: 'gold'
         reqs:
@@ -74,7 +74,7 @@ features:
           - Large subscriber base of fans active in the comments section.
         rewards:
           - 50
-          - 5
+          - 10
           - 25
       - tier: 'diamond'
         reqs:
@@ -82,7 +82,7 @@ features:
           - Recognized influencer and large follower audience.
         rewards:
           - 100
-          - 8
+          - 16
           - 50
     rewards:
       - title: Sign Up to YouTube Partner Program

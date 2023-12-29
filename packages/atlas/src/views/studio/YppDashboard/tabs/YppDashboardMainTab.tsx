@@ -205,7 +205,7 @@ export const YppDashboardMainTab: FC = () => {
               !currentChannel || !currentChannel.yppStatus.startsWith('Verified')
                 ? currentChannel?.yppStatus.startsWith('Suspended')
                   ? undefined
-                  : 5
+                  : getTierRewards('diamond')?.videoSync
                 : getTierRewards(yppBackendTierToConfig(currentChannel.yppStatus))?.videoSync
             }
             isRangeAmount={!currentChannel || !currentChannel.yppStatus.startsWith('Verified')}
