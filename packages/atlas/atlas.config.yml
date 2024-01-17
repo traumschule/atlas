@@ -66,7 +66,7 @@ features:
           - Sizeable subscriber base with high ratio of views for videos.
         rewards:
           - 25
-          - 6
+          - 3
           - 12.5
       - tier: 'gold'
         reqs:
@@ -74,7 +74,7 @@ features:
           - Large subscriber base of fans active in the comments section.
         rewards:
           - 50
-          - 10
+          - 5
           - 25
       - tier: 'diamond'
         reqs:
