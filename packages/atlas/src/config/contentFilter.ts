@@ -17,7 +17,7 @@ export const cancelledVideoFilter: VideoWhereInput = {
   },
 }
 
-const browserLanguage = navigator.language.split('-')[0]
+const browserLanguage = navigator.language?.split('-')[0]
 
 export const publicCryptoVideoFilter: VideoWhereInput = {
   isPublic_eq: true,
