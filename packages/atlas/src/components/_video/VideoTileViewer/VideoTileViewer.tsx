@@ -19,7 +19,6 @@ type VideoTileViewerProps = {
   detailsVariant?: VideoDetailsVariant
   direction?: 'vertical' | 'horizontal'
   className?: string
-  prefetch?: boolean
 }
 
 export const VideoTileViewer: FC<VideoTileViewerProps> = ({ id, onClick, detailsVariant, direction, className }) => {
@@ -29,7 +28,6 @@ export const VideoTileViewer: FC<VideoTileViewerProps> = ({ id, onClick, details
     onError: (error) => SentryLogger.error('Failed to fetch video', 'VideoTile', error, { video: { id } }),
   })
   const { copyToClipboard } = useClipboard()
-  // useVideoPreload(prefetch ? video?.media?.resolvedUrls : undefined)
 
   const { avatarPhotoUrls, isLoadingAvatar, isLoadingThumbnail, thumbnailPhotoUrls, videoHref } =
     useVideoTileSharedLogic(video)
