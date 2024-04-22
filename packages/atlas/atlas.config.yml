@@ -51,23 +51,23 @@ features:
     enrollmentReward: 5000 # Amount for successful enrollment in YPP in joystream.tokenTicker units.
     enrollmentUsdReward: 5 # Amount for successful enrollment in YPP in USD.
     referralBaseReward: 2.5 # Self-explanatory, it should match `baseUsdAmount.min` value in last `rewards` entry
-    tierBoostMultiplier: 2 # Multiplier to boost specific tiers for certain conditions
+    tierBoostMultiplier: 1 # Multiplier to boost specific tiers for certain conditions
     tiersDefinition: # Tiers for YouTube partner program rewards. You can provide maximum three tiers. Each tier should has own multiplier.
       - tier: 'bronze'
         reqs:
           - Lower effort production.
           - Growing subscriber base of channel supporters.
         rewards:
-          - 2 # Reward for signup in USD
+          - 1 # Reward for signup in USD
           - 0 # Reward for synced video
-          - 1 # Reward for referral
+          - 0.5 # Reward for referral
       - tier: 'silver'
         reqs:
           - Original good quality of content.
           - Sizeable subscriber base with high ratio of views for videos.
         rewards:
           - 25
-          - 3
+          - 1
           - 12.5
       - tier: 'gold'
         reqs:
@@ -75,7 +75,7 @@ features:
           - Large subscriber base of fans active in the comments section.
         rewards:
           - 50
-          - 5
+          - 2
           - 25
       - tier: 'diamond'
         reqs:
@@ -83,7 +83,7 @@ features:
           - Recognized influencer and large follower audience.
         rewards:
           - 100
-          - 16
+          - 5
           - 50
     rewards:
       - title: Sign Up to YouTube Partner Program
