@@ -150,6 +150,7 @@ export const YppHero: FC<YppHeroProps> = ({ onSignUpClick, yppAtlasStatus, onVie
                             fullWidth={!xsMatch}
                             size={xxsMatch && !xsMatch ? 'large' : smMatch ? 'large' : 'medium'}
                             variant="secondary"
+                            id="rewards-new-channel-button"
                           >
                             Create New Channel
                           </Button>

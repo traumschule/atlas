@@ -54,7 +54,7 @@ const benefitsMetadata = {
   },
   twitterPost: {
     title: 'Post on X',
-    description: `Follow JoystreamDAO on X and post about why you signed up to ${atlasConfig.general.appName} using hashtag #${atlasConfig.general.appName}Web3Creators mentioning @JoystreamDAO to get a chance of weekly reward.`,
+    description: `Follow JoystreamDAO on X and post about why you signed up to ${atlasConfig.general.appName} using hashtag #${atlasConfig.general.appName}Web3Creators mentioning @JoystreamDAO and your ${atlasConfig.general.appName} Channel Name to get a chance of weekly reward.`,
     reward: '10 USD',
     actionLink: 'https://twitter.com/joystreamdao?lang=en',
     tooltipLink:
@@ -492,7 +492,7 @@ export const YppDashboardMainTab: FC = () => {
             rewardNode={benefitsMetadata.shareNft.reward}
             description={
               <>
-                Drop the link of your post to{' '}
+                Share NFT from Gleev on social media of your choice and drop the link of your post to{' '}
                 <TextButton as="span" to="https://discord.com/channels/811216481340751934/1224714104552558682">
                   shared NFTs channel
                 </TextButton>{' '}
@@ -521,7 +521,7 @@ export const YppDashboardMainTab: FC = () => {
             rewardNode={benefitsMetadata.shareToken.reward}
             description={
               <>
-                Drop the link of your post to{' '}
+                Share your CRT page from Gleev on social media of your choice and drop the link of your post to{' '}
                 <TextButton as="span" to="https://discord.com/channels/811216481340751934/1233002048979603487">
                   shared Tokens channel{' '}
                 </TextButton>{' '}
