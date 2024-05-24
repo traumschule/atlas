@@ -492,10 +492,8 @@ export const YppDashboardMainTab: FC = () => {
             description={
               <>
                 Share NFT from Gleev on social media of your choice and drop the link of your post to{' '}
-                <TextButton as="span" to={atlasConfig.general.joystreamDiscordUrl}>
-                  #shared-NFTs
-                </TextButton>{' '}
-                on Discord to participate in rewards.
+                <TextButton to={atlasConfig.general.joystreamDiscordUrl}>#shared-NFTs</TextButton> on Discord to
+                participate in rewards.
               </>
             }
             rewardTooltip={
@@ -521,10 +519,8 @@ export const YppDashboardMainTab: FC = () => {
             description={
               <>
                 Share your CRT page from Gleev on social media of your choice and drop the link of your post to{' '}
-                <TextButton as="span" to={atlasConfig.general.joystreamDiscordUrl}>
-                  #shared-CRTs
-                </TextButton>{' '}
-                on Discord to participate in rewards.
+                <TextButton to={atlasConfig.general.joystreamDiscordUrl}>#shared-CRTs</TextButton> on Discord to
+                participate in rewards.
               </>
             }
             rewardTooltip={
