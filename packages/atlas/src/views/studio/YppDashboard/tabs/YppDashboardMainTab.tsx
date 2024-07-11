@@ -644,13 +644,10 @@ export const BenefitsContainer = ({ children, title }: { children: ReactNode[] |
   )
 }
 
-type UploadStatusGroupProps = {
-  isActive?: boolean
-}
-
 type DrawerProps = {
   maxHeight?: number
-} & UploadStatusGroupProps
+  isActive?: boolean
+}
 
 const StyledGridItem = styled(GridItem)`
   background: ${cVar('colorBackgroundMuted')};
