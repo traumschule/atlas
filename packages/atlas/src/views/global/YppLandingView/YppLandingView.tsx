@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { ParallaxProvider } from 'react-scroll-parallax'
 
 import { YppReferralBanner } from '@/components/_ypp/YppReferralBanner'
+import { YppSuspendedModal } from '@/components/_ypp/YppSuspendedModal'
+import { atlasConfig } from '@/config'
 import { absoluteRoutes } from '@/config/routes'
 import { useHeadTags } from '@/hooks/useHeadTags'
 import { useSegmentAnalytics } from '@/hooks/useSegmentAnalytics'
@@ -34,6 +36,7 @@ export const YppLandingView: FC = () => {
   const viewerEarningsRef = useRef<HTMLDivElement | null>(null)
 
   const [wasSignInTriggered, setWasSignInTriggered] = useState(false)
+  const [showYppSuspendedModal, setShowYppSuspendedModal] = useState(true)
   const shouldContinueYppFlowAfterCreatingChannel = useYppStore(
     (store) => store.shouldContinueYppFlowAfterCreatingChannel
   )
@@ -105,12 +108,23 @@ export const YppLandingView: FC = () => {
     return 'have-channel'
   }
 
+  const yppSuspended = atlasConfig.features.ypp.suspended
+
   return (
     <Wrapper>
       {headTags}
-      <YppAuthorizationModal unSyncedChannels={unsyncedChannels} />
+      {!yppSuspended && <YppAuthorizationModal unSyncedChannels={unsyncedChannels} />}
       <ParallaxProvider>
-        <YppReferralBanner />
+        {yppSuspended && (
+          <YppSuspendedModal
+            show={showYppSuspendedModal}
+            onClose={() => {
+              setShowYppSuspendedModal(false)
+              navigate(absoluteRoutes.viewer.index())
+            }}
+          />
+        )}
+        {!yppSuspended && <YppReferralBanner />}
         <YppHero
           onSelectChannel={() => setYppModalOpen('ypp-select-channel')}
           onSignUpClick={handleYppSignUpClick}
