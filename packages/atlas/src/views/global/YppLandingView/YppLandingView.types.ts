@@ -13,6 +13,7 @@ export type YppSyncedChannel = {
   aggregatedStats: number
   shouldBeIngested: boolean
   yppStatus: YppChannelStatus
+  preOptOutStatus?: YppChannelStatus
   joystreamChannelId: number
   videoCategoryId: string
   thumbnails: {
