@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.5.1] - 2024-11-05
+
+### Changed
+
+- Re-enabled YPP (`features.ypp.suspended: false`)
+- Added a message in YPP dashboard for creators potentially affected by [opted-out issue](https://github.com/Joystream/youtube-synch/issues/337) 
+
 ## [5.5.0] - 2024-11-07
 
 **IMPORTANT:** Depends on Orion release `4.1.0`
