@@ -8,6 +8,7 @@ import {
   SvgActionNewChannel,
   SvgActionNewTab,
   SvgAlertsInformative24,
+  SvgAlertsWarning24,
   SvgLogoDiscordOnDark,
 } from '@/assets/icons'
 import { Banner } from '@/components/Banner'
@@ -115,7 +116,7 @@ export const YppDashboardMainTab: FC = () => {
   } = useSegmentAnalytics()
   const navigate = useNavigate()
   const _handleYppSignUpClick = useYppAuthorizeHandler()
-  const { unsyncedChannels, currentChannel } = useGetYppSyncedChannels()
+  const { unsyncedChannels, currentChannel, optedOutChannels } = useGetYppSyncedChannels()
 
   const mdMatch = useMediaMatch('md')
   const smMatch = useMediaMatch('sm')
@@ -129,6 +130,8 @@ export const YppDashboardMainTab: FC = () => {
   const isSilverOrAbove = ['Verified::Silver', 'Verified::Gold', 'Verified::Diamond'].includes(
     currentChannel?.yppStatus ?? ''
   )
+  const preOptOutStatus = optedOutChannels?.find((c) => c.joystreamChannelId.toString() === channelId)?.preOptOutStatus
+
   // const isBronze = currentChannel?.yppStatus === 'Verified::Bronze'
   const handleYppSignUpClick = () => {
     const success = _handleYppSignUpClick()
@@ -136,26 +139,6 @@ export const YppDashboardMainTab: FC = () => {
       navigate(absoluteRoutes.viewer.ypp())
     }
   }
-
-  const syncStatusContent = (
-    <YppSyncStatus>
-      <Tooltip
-        text={
-          currentChannel?.shouldBeIngested
-            ? `Your YouTube channel is being automatically synced with your ${atlasConfig.general.appName} channel. You will be rewarded every time a new video gets synced.`
-            : `Automatic YouTube channel sync with ${atlasConfig.general.appName} is disabled. You can enable it again anytime in YPP settings tab.`
-        }
-        placement="top-start"
-      >
-        <StatusDotWrapper>
-          <StatusDot isOn={currentChannel?.shouldBeIngested ?? false} />
-        </StatusDotWrapper>
-      </Tooltip>
-      <Text variant="t200" as="p">
-        Autosync: {currentChannel?.shouldBeIngested ? 'On' : 'Off'}
-      </Text>
-    </YppSyncStatus>
-  )
 
   // const silverTierGroup = (
   //   <FlexBox gap={3} alignItems="center">
@@ -190,18 +173,76 @@ export const YppDashboardMainTab: FC = () => {
     )
   }
 
+  const syncStatusContent = (
+    <YppSyncStatus>
+      <Tooltip
+        text={
+          currentChannel?.shouldBeIngested
+            ? `Your YouTube channel is being automatically synced with your ${atlasConfig.general.appName} channel. You will be rewarded every time a new video gets synced.`
+            : `Automatic YouTube channel sync with ${atlasConfig.general.appName} is disabled. You can enable it again anytime in YPP settings tab.`
+        }
+        placement="top-start"
+      >
+        <StatusDotWrapper>
+          <StatusDot isOn={currentChannel?.shouldBeIngested ?? false} />
+        </StatusDotWrapper>
+      </Tooltip>
+      <Text variant="t200" as="p">
+        Autosync: {currentChannel?.shouldBeIngested ? 'On' : 'Off'}
+      </Text>
+    </YppSyncStatus>
+  )
+
   return (
     <>
-      {!atlasConfig.features.ypp.suspended && <YppAuthorizationModal unSyncedChannels={unsyncedChannels} />}
+      <YppAuthorizationModal unSyncedChannels={unsyncedChannels} />
       <LayoutGrid>
         <GridItem colSpan={{ base: 12 }}>
-          <Banner
-            dismissibleId="ypp-sync-second-channel"
-            title="Have another YouTube channel?"
-            icon={<SvgAlertsInformative24 />}
-            description={`You can apply to the YouTube Partner Program with as many YouTube & ${atlasConfig.general.appName} channels as you want. Each YouTube channel can be assigned to only one ${atlasConfig.general.appName} channel.`}
-            actionButton={{ text: 'Add new channel', onClick: handleYppSignUpClick }}
-          />
+          {preOptOutStatus ? (
+            <Banner
+              dismissibleId="ypp-opted-out-bug"
+              title="Was your channel mistakenly removed from YPP?"
+              borderColor={cVar('colorTextCaution')}
+              icon={<SvgAlertsWarning24 />}
+              description={
+                <>
+                  <Text variant="t200" color="colorText" as="p" margin={{ bottom: 2 }}>
+                    A&nbsp;
+                    <TextButton
+                      openLinkInNewTab={true}
+                      to="https://github.com/Joystream/youtube-synch/issues/337"
+                      icon={<SvgActionNewTab />}
+                      iconPlacement="right"
+                    >
+                      recent bug
+                    </TextButton>{' '}
+                    in YouTube sync has caused some channels to be automatically removed from YPP and we detected that
+                    your channel was potentially affected.
+                  </Text>
+                  <Text variant="t200" color="colorText" as="p" margin={{ bottom: 2 }}>
+                    If you didn't leave the program willigly, please sign up again in order to continue receiving
+                    rewards. Your previously assigned tier,{' '}
+                    <Text variant="t200" color="colorTextStrong" as="span">
+                      {preOptOutStatus}
+                    </Text>
+                    , will be restored automatically.
+                  </Text>
+                  <Text variant="t200" color="colorText" as="p">
+                    We deeply apologize for the inconvenience.
+                  </Text>
+                </>
+              }
+              actionButton={{ text: 'Sign up again', _textOnly: false, onClick: handleYppSignUpClick }}
+            />
+          ) : (
+            <Banner
+              dismissibleId="ypp-sync-second-channel"
+              title="Have another YouTube channel?"
+              icon={<SvgAlertsInformative24 />}
+              description={`You can apply to the YouTube Partner Program with as many YouTube & ${atlasConfig.general.appName} channels as you want. Each YouTube channel can be assigned to only one ${atlasConfig.general.appName} channel.`}
+              actionButton={{ text: 'Add new channel', onClick: handleYppSignUpClick }}
+            />
+          )}
         </GridItem>
         <GridItem colSpan={{ xxs: 12, md: 4 }}>
           <YppDashboardTier onSignUp={handleYppSignUpClick} status={currentChannel?.yppStatus} />

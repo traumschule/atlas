@@ -35,6 +35,9 @@ export const useGetYppSyncedChannels = () => {
           }
         })
       )
+      const optedOutChannels = syncedChannels.filter(
+        (channel): channel is YppSyncedChannel => !!channel && channel?.yppStatus === 'OptedOut'
+      )
       const fetchedChannels = syncedChannels.filter(
         (channel): channel is YppSyncedChannel => !!channel && channel.yppStatus !== 'OptedOut'
       )
@@ -43,6 +46,7 @@ export const useGetYppSyncedChannels = () => {
       return {
         unsyncedChannels: activeMembership?.channels.filter((channel) => !syncedChannelIds?.includes(channel.id)),
         syncedChannels: fetchedChannels,
+        optedOutChannels,
         currentChannel: fetchedChannels?.find(
           (syncedChannels) => syncedChannels.joystreamChannelId.toString() === channelId
         ),
@@ -62,6 +66,7 @@ export const useGetYppSyncedChannels = () => {
     unsyncedChannels: yppSyncedData?.unsyncedChannels,
     syncedChannels: yppSyncedData?.syncedChannels,
     currentChannel: yppSyncedData?.currentChannel,
+    optedOutChannels: yppSyncedData?.optedOutChannels,
     refetchYppSyncedChannels: refetch,
     isLoading: isLoading || membershipsLoading,
   }
