@@ -193,6 +193,18 @@ export const YppDashboardMainTab: FC = () => {
     </YppSyncStatus>
   )
 
+  // const silverTierGroup = (
+  //   <FlexBox gap={3} alignItems="center">
+  //     <SilverTierWrapper tier="Verified::Silver">{getTierIcon('Verified::Silver')}</SilverTierWrapper>
+  //     <Text variant="t300" as="p">
+  //       Offers are valid for silver tiers and above.
+  //     </Text>
+  //     {!isBronze ? (
+  //       <Information text="Connect YouTube channel and wait for verification by the content team to get rewards tier assigned." />
+  //     ) : null}
+  //   </FlexBox>
+  // )
+
   return (
     <>
       <YppAuthorizationModal unSyncedChannels={unsyncedChannels} />
