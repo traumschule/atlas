@@ -420,6 +420,7 @@ export const YppDashboardMainTab: FC = () => {
           />
         </BenefitsContainer>
 
+        {/*
         <BenefitsContainer title="Community Builders">
           <BenefitCard
             title={benefitsMetadata.discordCommunity.title}
@@ -505,6 +506,7 @@ export const YppDashboardMainTab: FC = () => {
             }
           />
         </BenefitsContainer>
+	*/}
 
         {/* <BenefitsContainer title="Original Creators"> */}
         {/*   {isSilverOrAbove ? null : silverTierGroup} */}
