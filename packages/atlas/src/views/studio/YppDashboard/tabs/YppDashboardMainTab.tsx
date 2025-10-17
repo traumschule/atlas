@@ -506,7 +506,7 @@ export const YppDashboardMainTab: FC = () => {
             }
           />
         </BenefitsContainer>
-	*/}
+ 	*/}
 
         {/* <BenefitsContainer title="Original Creators"> */}
         {/*   {isSilverOrAbove ? null : silverTierGroup} */}
